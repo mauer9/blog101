@@ -3,15 +3,19 @@ import { apiService } from '../services/api.service'
 import { TransformService } from '../services/transform.service'
 
 export class PostsComponent extends Component {
-    constructor(id) {
+    constructor(id, {loader}) {
         super(id)
+        this.loader = loader
     }
 
     async onShow() {
+        this.$el.innerHTML = ''
+        this.loader.show()
+
         const fbObj = await apiService.fetchPosts()
         const posts = TransformService.fbObjToArr(fbObj)
-        console.log(posts)
         
+        this.loader.hide()
         this.$el.innerHTML = postsToHTML(posts)
     }
 }
