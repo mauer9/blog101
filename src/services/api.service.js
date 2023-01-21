@@ -23,6 +23,15 @@ class ApiService {
             console.error(e)
         }
     }
+
+    async fetchPostById(id) {
+        try {
+            const request = new Request(`${this.url}/posts/${id}.json`, {method: 'get'})
+            return makeRequest(request)
+        } catch (e) {
+            console.error(e)
+        }
+    }
 }
 
 async function makeRequest(request) {
