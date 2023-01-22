@@ -1,4 +1,4 @@
-export function btnHandler($el, FavoritesService) {
+export function btnHandler($el, FavoritesService, hide = false) {
     const id = $el.dataset.postId
 
     if (id) {
@@ -17,5 +17,6 @@ export function btnHandler($el, FavoritesService) {
         }
 
         FavoritesService.setFavorites(favorites)
+        if (hide) $el.closest('.panel').style.display = 'none'
     }
 }

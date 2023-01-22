@@ -11,7 +11,7 @@ export class FavoritesComponent extends Component {
 
     init() {
         this.$el.addEventListener('click',
-            (e) => btnHandler(e.target, FavoritesService)
+            (e) => btnHandler(e.target, FavoritesService, true)
         )
     }
 
