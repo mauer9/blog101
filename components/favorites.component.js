@@ -5,8 +5,9 @@ import { btnHandler } from '../services/btnHandler.service'
 import { renderPost } from '../templates/renderPost.template'
 
 export class FavoritesComponent extends Component {
-    constructor(id) {
+    constructor(id, {loader}) {
         super(id)
+        this.loader = loader
     }
 
     init() {
@@ -17,6 +18,8 @@ export class FavoritesComponent extends Component {
 
     async onShow() {
         this.$el.innerHTML = ''
+        this.loader.show()
+
         const favorites = FavoritesService.getFavorites()
 
         if (favorites.length) {
@@ -24,6 +27,8 @@ export class FavoritesComponent extends Component {
         } else {
             this.$el.innerHTML = '<p>No favorite posts</p>'
         }
+
+        this.loader.hide()
     }
 }
 
